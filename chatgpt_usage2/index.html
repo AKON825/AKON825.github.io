@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://salesiq.zoho.com/sites673991192/settings/home -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI o4-mini Token 使用分析報告</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .json-container {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .json-content {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            color: #495057;
+        }
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .cost-table th,
+        .cost-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .cost-table th {
+            background-color: #667eea;
+            color: white;
+            font-weight: 500;
+        }
+        .cost-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .cost-table tr:hover {
+            background-color: #e3f2fd;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #81c784 0%, #4caf50 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .highlight-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+        .highlight-box .amount {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .breakdown-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .breakdown-item h4 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+        }
+        .breakdown-item .value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        .comparison-alert {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .comparison-alert h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .web-search-info {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>OpenAI o4-mini Token 使用分析報告</h1>
+            <p>API Response 詳細內容與費用計算（含Web搜尋功能）</p>
+        </div>
+
+        <div class="content">
+            <!-- API Response Section -->
+            <div class="section">
+                <h2>📋 API Response 原始資料</h2>
+                <div class="json-container">
+                    <div class="json-content">{
+  "id": "resp_68834b56c51481998014142d2e86a1f802da0d8e0376bf6b",
+  "object": "response",
+  "created_at": 1753434966,
+  "status": "completed",
+  "background": false,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 3000,
+  "max_tool_calls": null,
+  "model": "o4-mini-2025-04-16",
+  "output": [
+    {
+      "id": "rs_68834b57533c8199af2e00ccdf5a942402da0d8e0376bf6b",
+      "type": "reasoning",
+      "summary": []
+    },
+    {
+      "id": "ws_68834b583c3c81998b74ca38447bcea302da0d8e0376bf6b",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "query": "聚和國際 產業 新聞 聚和國際"
+      }
+    },
+    {
+      "id": "rs_68834b5a79048199afbff3f65b07b11502da0d8e0376bf6b",
+      "type": "reasoning",
+      "summary": []
+    },
+    {
+      "id": "ws_68834b5b1cd481998803c18c10fcc62802da0d8e0376bf6b",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "query": "聚和國際 2025 產業 新聞 聚和 國際"
+      }
+    },
+    {
+      "id": "rs_68834b5dc22c81999f05f2baa8c5e8a402da0d8e0376bf6b",
+      "type": "reasoning",
+      "summary": []
+    },
+    {
+      "id": "ws_68834b5f08a08199a54a2f818317eabe02da0d8e0376bf6b",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "query": "聚和國際 6509 2025 07"
+      }
+    },
+    {
+      "id": "rs_68834b6151088199a986dd15b6ac553102da0d8e0376bf6b",
+      "type": "reasoning",
+      "summary": []
+    },
+    {
+      "id": "msg_68834b65aacc81998ad79aebf924377a02da0d8e0376bf6b",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 404,
+              "start_index": 337,
+              "title": "聚和國際（6509）：從特用化學轉型生醫材料的領航者 - 913 理財估測站",
+              "url": "https://uc913.com/stock-6509/?utm_source=chatgpt.com"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 865,
+              "start_index": 798,
+              "title": "聚和國際（6509）：從特用化學轉型生醫材料的領航者 - 913 理財估測站",
+              "url": "https://uc913.com/stock-6509/?utm_source=chatgpt.com"
+            }
+          ],
+          "logprobs": [],
+          "text": "以下為過去一個月（2025/06/25–2025/07/25）內，聚和國際（股票代號：6509）之主要產業相關新聞摘要，並附上各新聞來源網址：\n\n1. 聚和國際屏東科學園區新廠動工與產能規劃（2025/06/19）  \n   - 聚和國際於2025年6月19日法說會中宣布，將於屏東科學園區投資逾新台幣50億元興建新廠，規劃一期占地約6公頃，主攻生物緩衝劑產品，預計2027年底完工、2028年投產，屆時一期產能將較現有產能倍增。  \n   - 公司並擬由中國常熟廠調度產能支援高雄大發廠，以因應未來市場需求。  \n   - 2025年前五月合併營收達22.10億元，年增9.49%；2024年度合併營收47.46億元，每股稅後純益2.71元，並擬配發現金股息1.30元。 ([uc913.com](https://uc913.com/stock-6509/?utm_source=chatgpt.com))  \n   新聞來源：  \n   • https://uc913.com/stock-6509/  \n\n2. 聚和國際導入 AI Agent 提升內部作業效率（2025/07/03）  \n   - 聚和國際於2025年7月3日宣布，自主導入 Intellicon AI Agent Hub，並已成功開發及部署近20隻 AI Agents，涵蓋人力資源、訂單處理、財務管理等多項流程，實現「自訓、自管、自用」的 AI 應用模式。  \n   - 公司超過80位員工完成提示工程（Prompt Engineering）與 Agent 開發課程，核心成員中有82%以上表示已將 AI 技能應用於日常工作，明顯提升作業效率並節省人力成本。  \n   - 聚和同時為此專案訂定 KPI，包含部門導入覆蓋率、Prompt 設計通過率、作業效率提升幅度與節省人力時數等，透過數據化管理推動全員數位轉型。 ([uc913.com](https://uc913.com/stock-6509/?utm_source=chatgpt.com))  \n   新聞來源：  \n   • https://uc913.com/stock-6509/  \n\n以上兩則新聞，分別聚焦聚和國際在生產基地擴建與數位化轉型兩大面向的最新進展。若需進一步了解，請參閱各來源網址。"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "reasoning": {
+    "effort": "low",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "web_search_preview",
+      "search_context_size": "medium",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": null,
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 40205,
+    "input_tokens_details": {
+      "cached_tokens": 16488
+    },
+    "output_tokens": 1203,
+    "output_tokens_details": {
+      "reasoning_tokens": 576
+    },
+    "total_tokens": 41408
+  },
+  "user": null,
+  "metadata": {}
+}</div>
+                </div>
+            </div>
+
+            <!-- Special Features -->
+            <div class="section">
+                <h2>🔍 特殊功能分析</h2>
+                <div class="web-search-info">
+                    <h4>🌐 Web搜尋功能</h4>
+                    <p>此次API呼叫使用了Web搜尋功能，執行了<strong>3次搜尋查詢</strong>：</p>
+                    <ul>
+                        <li>搜尋1：「聚和國際 產業 新聞 聚和國際」</li>
+                        <li>搜尋2：「聚和國際 2025 產業 新聞 聚和 國際」</li>
+                        <li>搜尋3：「聚和國際 6509 2025 07」</li>
+                    </ul>
+                    <p>搜尋結果包含了URL引用和最新的產業新聞資訊。</p>
+                </div>
+            </div>
+
+            <!-- Token Usage Analysis -->
+            <div class="section">
+                <h2>📊 Token 使用量分析</h2>
+                
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <h4>Input Tokens</h4>
+                        <div class="value">40,205</div>
+                        <small>其中 16,488 為快取 tokens</small>
+                    </div>
+                    <div class="breakdown-item">
+                        <h4>Output Tokens</h4>
+                        <div class="value">1,203</div>
+                        <small>包含 576 推理 tokens</small>
+                    </div>
+                    <div class="breakdown-item">
+                        <h4>Total Tokens</h4>
+                        <div class="value">41,408</div>
+                        <small>總計使用量</small>
+                    </div>
+                </div>
+
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Token 類型</th>
+                            <th>數量</th>
+                            <th>費率 (每百萬 tokens)</th>
+                            <th>費用 (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>非快取 Input</td>
+                            <td>23,717</td>
+                            <td>$1.10</td>
+                            <td>$0.026089</td>
+                        </tr>
+                        <tr>
+                            <td>快取 Input</td>
+                            <td>16,488</td>
+                            <td>$0.275</td>
+                            <td>$0.004534</td>
+                        </tr>
+                        <tr>
+                            <td>Output</td>
+                            <td>1,203</td>
+                            <td>$4.40</td>
+                            <td>$0.005293</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cost Summary -->
+            <div class="section">
+                <h2>💰 費用總結</h2>
+                <div class="highlight-box">
+                    <h3>本次 API 呼叫總費用</h3>
+                    <div class="amount">$0.03592 USD</div>
+                    <p>約新台幣 $1.15 元</p>
+                </div>
+
+                <div class="comparison-alert">
+                    <h4>📈 與上次比較</h4>
+                    <ul style="color: #856404; margin: 0; padding-left: 20px;">
+                        <li><strong>Token使用量大幅增加</strong>：從 4,568 增加到 41,408 tokens（增加 8倍）</li>
+                        <li><strong>費用增加</strong>：從 $0.0089 增加到 $0.0359（增加 4倍）</li>
+                        <li><strong>主要原因</strong>：使用了Web搜尋功能，大量增加了input tokens</li>
+                        <li><strong>快取效益顯著</strong>：41% 的input tokens享有快取折扣</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e8f5e8; border: 1px solid #4caf50; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <h4 style="color: #2e7d32; margin-top: 0;">💡 費用說明</h4>
+                    <ul style="color: #2e7d32; margin: 0; padding-left: 20px;">
+                        <li>快取 tokens 享有 75% 折扣優惠（$0.275 vs $1.10）</li>
+                        <li>Web搜尋功能會顯著增加input tokens數量</li>
+                        <li>推理tokens（576）包含在output計費中</li>
+                        <li>總費用約3.6美分，仍屬經濟實惠範圍</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Model Information -->
+            <div class="section">
+                <h2>🤖 模型資訊與功能</h2>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th>數值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>模型版本</td>
+                            <td>o4-mini-2025-04-16</td>
+                        </tr>
+                        <tr>
+                            <td>最大輸出 Tokens</td>
+                            <td>3,000</td>
+                        </tr>
+                        <tr>
+                            <td>溫度設定</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>推理努力程度</td>
+                            <td>Low</td>
+                        </tr>
+                        <tr>
+                            <td>工具使用</td>
+                            <td>Web搜尋（3次查詢）</td>
+                        </tr>
+                        <tr>
+                            <td>並行工具呼叫</td>
+                            <td>啟用</td>
+                        </tr>
+                        <tr>
+                            <td>狀態</td>
+                            <td>已完成</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="section">
+                <h2>📈 效能指標</h2>
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <h4>快取命中率</h4>
+                        <div class="value">41.0%</div>
+                        <small>16,488 / 40,205 tokens</small>
+                    </div>
+                    <div class="breakdown-item">
+                        <h4>推理Token比例</h4>
+                        <div class="value">47.9%</div>
+                        <small>576 / 1,203 output tokens</small>
+                    </div>
+                    <div class="breakdown-item">
+                        <h4>平均每次搜尋成本</h4>
+                        <div class="value">$0.012</div>
+                        <small>$0.036 / 3 次搜尋</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>報告生成時間：2025年01月24日 | OpenAI o4-mini Token 使用分析（含Web搜尋功能）</p>
+        </div>
+    </div>
+
+</body></html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI API 使用分析報告</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin: 0;
+        }
+        .model-info {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .cost-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .cost-section h2 {
+            margin: 0 0 15px 0;
+        }
+        .cost-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .breakdown {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .breakdown h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #bdc3c7;
+        }
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #3498db;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .performance-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI API 使用分析報告</h1>
+            <div class="model-info">模型：o4-mini-2025-04-16</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>輸入 Token</h3>
+                <div class="stat-value">517</div>
+            </div>
+            <div class="stat-card">
+                <h3>輸出 Token</h3>
+                <div class="stat-value">1,713</div>
+            </div>
+            <div class="stat-card">
+                <h3>推理 Token</h3>
+                <div class="stat-value">1,408</div>
+            </div>
+            <div class="stat-card">
+                <h3>總計 Token</h3>
+                <div class="stat-value">2,230</div>
+            </div>
+        </div>
+
+        <div class="cost-section">
+            <h2>💰 總成本估算</h2>
+            <div class="cost-value">$0.0067 USD</div>
+            <p>約 NT$ 0.22 元</p>
+        </div>
+
+        <div class="breakdown">
+            <h3>📊 成本詳細分解</h3>
+            <div class="breakdown-item">
+                <span>輸入費用 (517 tokens × $0.000003)</span>
+                <span>$0.0016</span>
+            </div>
+            <div class="breakdown-item">
+                <span>輸出費用 (1,713 tokens × $0.000003)</span>
+                <span>$0.0051</span>
+            </div>
+            <div class="breakdown-item">
+                <span>總計費用</span>
+                <span>$0.0067</span>
+            </div>
+        </div>
+
+        <div class="performance-info">
+            <h3>⚡ 效能資訊</h3>
+            <p><strong>推理努力等級：</strong> Medium</p>
+            <p><strong>服務層級：</strong> Default</p>
+            <p><strong>處理任務：</strong> 護照資料解析與文字識別</p>
+            <p><strong>回應狀態：</strong> 已完成</p>
+        </div>
+
+        <div class="note">
+            <h4>📝 說明</h4>
+            <ul>
+                <li>成本計算基於 OpenAI o4-mini 模型的標準定價</li>
+                <li>輸入/輸出 token 費率：$0.000003 per token</li>
+                <li>推理 token (1,408) 已包含在輸出 token 計算中</li>
+                <li>匯率以 1 USD = 33 TWD 計算</li>
+                <li>此次API調用處理了護照圖像識別與資料提取任務</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

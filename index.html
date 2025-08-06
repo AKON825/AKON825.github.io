@@ -3,218 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>配對系統專案規格書</title>
+    <title>約約伴配對系統開發需求規格書</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Microsoft JhengHei', sans-serif;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
             line-height: 1.6;
-            max-width: 1000px;
-            margin: 0 auto;
+            color: #333;
+            background-color: #f8f9fa;
             padding: 20px;
-            background-color: #f5f7fa;
         }
+
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
-        h2 {
-            color: #34495e;
-            background: linear-gradient(90deg, #3498db, #2980b9);
+
+        .header h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
-            margin: 25px 0 15px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
         }
-        h3 {
-            color: #2980b9;
-            margin: 20px 0 10px 0;
+
+        .subsection {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+
+        .subsection h3 {
+            color: #007bff;
+            margin-bottom: 15px;
             font-size: 1.2em;
         }
-        .note {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #f39c12;
-        }
-        .workflow {
-            background-color: #e8f4f8;
-            border: 1px solid #bee5eb;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #17a2b8;
-        }
-        .task-item {
-            background: #f8f9fa;
-            margin: 10px 0;
+
+        .field-list {
+            background: white;
             padding: 15px;
             border-radius: 5px;
-            border-left: 3px solid #28a745;
+            margin: 15px 0;
         }
-        .time-estimate {
-            color: #e74c3c;
+
+        .field-list h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+
+        .field-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .field-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .field-list li:before {
+            content: "▶ ";
+            color: #007bff;
             font-weight: bold;
-            background: #ffeaa7;
-            padding: 3px 8px;
-            border-radius: 3px;
-            display: inline-block;
-            margin-top: 5px;
         }
-        .highlight {
-            background-color: #fff2cc;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        ol, ul {
-            padding-left: 25px;
-        }
-        li {
-            margin: 8px 0;
-        }
-        .total-summary {
-            background: #e8f5e8;
+
+        .process-flow {
+            background: white;
             padding: 15px;
-            margin-top: 20px;
             border-radius: 5px;
-            border-left: 4px solid #28a745;
+            margin: 15px 0;
         }
-        .total-summary h4 {
-            color: #155724;
-            margin: 0 0 10px 0;
+
+        .process-flow h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+
+        .process-flow ol {
+            padding-left: 20px;
+        }
+
+        .process-flow li {
+            padding: 8px 0;
+            line-height: 1.5;
+        }
+
+        .timeline {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .timeline h4 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ffeaa7;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-task {
+            flex: 1;
+            color: #495057;
+        }
+
+        .timeline-duration {
+            background: #007bff;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .highlight {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #2196f3;
+            margin: 15px 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tech-item {
+            background: #007bff;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>配對系統專案規格書</h1>
-
-        <div class="note">
-            <strong>📝 說明：</strong>工時中的<span class="highlight">N天</span>代表暫時無法明確範圍時間
+        <div class="header">
+            <h1>約約伴配對系統</h1>
+            <p>開發需求規格書與工時評估</p>
         </div>
 
-        <h2>📊 工時總覽</h2>
-        <div class="workflow">
-            <h3>已確定工時</h3>
-            <ul>
-                <li>伺服器環境建置：<span class="time-estimate">2天</span></li>
-                <li>LINE@ LIFF 開發：<span class="time-estimate">2-4天</span></li>
-                <li>LINE@系統整合設定：<span class="time-estimate">1天</span></li>
-                <li>排程配對系統開發：<span class="time-estimate">3天</span></li>
-            </ul>
-            <p><strong>確定工時小計：8-10天</strong></p>
+        <!-- CRM端開發 -->
+        <div class="section">
+            <div class="section-title">🏢 CRM端開發需求</div>
 
-            <h3>待確認工時 (N天項目)</h3>
-            <ul>
-                <li>流程一：協同討論和測試至可行 - <span class="highlight">N天</span></li>
-                <li>網路連通性測試 - <span class="highlight">N天 (估計1天)</span></li>
-                <li>配對意圖觸發API開發 - <span class="highlight">N天</span></li>
-            </ul>
-            <p><strong>預估待確認工時：1+ 天 (實際需進一步評估)</strong></p>
+            <div class="subsection">
+                <h3>📋 配對清單資料表設計</h3>
+                <div class="field-list">
+                    <h4>資料表結構 (一條RECORD包含一男一女配對資訊)</h4>
+                    <ul>
+                        <li><strong>男方</strong> - Lookup 欄位</li>
+                        <li><strong>女方</strong> - Lookup 欄位</li>
+                        <li><strong>男方有意配對</strong> - Boolean 欄位</li>
+                        <li><strong>配對是否成功</strong> - Null/Boolean 欄位</li>
+                        <li><strong>時間批號</strong> - 格式如 25060201</li>
+                    </ul>
+                </div>
+            </div>
 
-            <div class="total-summary">
-                <h4>🎯 專案總工時預估</h4>
-                <p style="margin: 0; font-size: 1.1em;"><strong>最少：9天 | 最多：11+天</strong></p>
-                <p style="margin: 5px 0 0 0; color: #155724; font-size: 0.9em;">*實際工時將依N天項目的最終評估結果而定</p>
+            <div class="subsection">
+                <h3>🔄 系統流程設計</h3>
+                <div class="process-flow">
+                    <h4>配對流程步驟</h4>
+                    <ol>
+                        <li><strong>資料接口整合</strong><br>
+                            • 提供輸入資料API（男女方資料）<br>
+                            • 提供輸出資料API（寫入CRM配對清單模組）</li>
+
+                        <li><strong>LINE通知機制</strong><br>
+                            • 透過adapter server呼叫API發送LINE配對清單<br>
+                            • 支援Flex Message或LIFF頁面展示</li>
+
+                        <li><strong>配對意願處理</strong><br>
+                            • 男方在LINE端選擇配對對象<br>
+                            • 自動更新"男方有意配對"為true<br>
+                            • 觸發workflow直接寫入商機</li>
+
+                        <li><strong>配對結果管理</strong><br>
+                            • 人工聯絡安排配對過程<br>
+                            • 確認後更新"配對是否成功"欄位</li>
+
+                        <li><strong>訊息模板功能</strong><br>
+                            • 樣板訊息編輯器<br>
+                            • 廣告圖片切版輪播<br>
+                            • 可變數置換的自訂Flex Message</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h4>⏱️ CRM端開發工時評估</h4>
+                <div class="timeline-item">
+                    <div class="timeline-task">資料相關流程和模組、workflow設定</div>
+                    <div class="timeline-duration">3天</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-task">Flex message置換的CRM widget</div>
+                    <div class="timeline-duration">2天</div>
+                </div>
             </div>
         </div>
 
-        <h2>🔄 流程一：配對邏輯開發</h2>
-        <div class="workflow">
-            <h3>目標</h3>
-            <p>與甲方協同開發，利用現有男女方資料，透過ChatGPT(或其他LLM模型)產生配對系統核心組件。</p>
+        <!-- Adapter Server端開發 -->
+        <div class="section">
+            <div class="section-title">⚙️ Adapter Server端開發需求</div>
 
-            <h3>交付物</h3>
-            <ol>
-                <li><strong>標準化輸入格式</strong> - 定義男女方資料的統一輸入結構</li>
-                <li><strong>標準化輸出格式</strong> - 定義配對結果的輸出格式</li>
-                <li><strong>配對流程代碼</strong> - 實現配對邏輯的程式碼（語言不限，重點為邏輯實現）</li>
-            </ol>
+            <div class="subsection">
+                <h3>🖥️ 伺服器架設與配置</h3>
+                <div class="highlight">
+                    <strong>部署選項：</strong>自架（辦公室電腦）或雲端伺服器（如GCP）
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item">GCP Cloud</span>
+                    <span class="tech-item">LINE Bot</span>
+                    <span class="tech-item">LIFF</span>
+                    <span class="tech-item">API Gateway</span>
+                    <span class="tech-item">Database</span>
+                </div>
+            </div>
 
-            <div class="time-estimate">⏱️ 工時：協同討論和測試至可行 - N天</div>
+            <div class="subsection">
+                <h3>🔐 用戶驗證與綁定</h3>
+                <div class="process-flow">
+                    <h4>驗證流程</h4>
+                    <ol>
+                        <li>男性用戶透過LINE@ LIFF驗證email或手機</li>
+                        <li>將LINE User ID綁定到CRM系統</li>
+                        <li>建立用戶身份識別機制</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>📱 LINE整合功能</h3>
+                <div class="process-flow">
+                    <h4>主要功能模組</h4>
+                    <ol>
+                        <li><strong>配對清單展示</strong><br>
+                            • CRM配對結果透過server傳送到LINE前端<br>
+                            • 支援LIFF頁面或Flex Message展示</li>
+
+                        <li><strong>配對選擇機制</strong><br>
+                            • 男性用戶在LINE前端選擇配對目標<br>
+                            • 透過URL或API呼叫CRM觸發配對意圖</li>
+
+                        <li><strong>訊息發送API</strong><br>
+                            • 提供CRM呼叫的LINE訊息發送功能<br>
+                            • 支援配對成功備忘錄（含行程、對方資料等）</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h4>⏱️ Server端開發工時評估</h4>
+                <div class="timeline-item">
+                    <div class="timeline-task">GCP帳號開啟、組態設定</div>
+                    <div class="timeline-duration">1天</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-task">Server架設（套件安裝、資料庫、自動重啟、log系統）</div>
+                    <div class="timeline-duration">2天</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-task">LINE@ LIFF開發（驗證綁定、配對清單頁面）</div>
+                    <div class="timeline-duration">4天*</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-task">LINE@專案導入設定</div>
+                    <div class="timeline-duration">1天</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-task">API開發（配對清單接收、LINE訊息發送）</div>
+                    <div class="timeline-duration">1天</div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>* 注意事項：</strong>LIFF開發工時會依據頁面美觀要求修改程度而異動<br>
+                <strong>** 備註：</strong>不包含複雜Flex Message設計工時
+            </div>
         </div>
 
-        <h2>🚀 流程二：系統部署與整合</h2>
-        <div class="workflow">
-            <h3>架構概述</h3>
-            <p>在自架(辦公室電腦)或雲端伺服器(如GCP)上建置完整的配對系統，整合LINE@官方帳號與CRM系統。</p>
-
-            <h3>系統流程</h3>
-            <ol>
-                <li>男性用戶透過LINE@ LIFF驗證email或手機</li>
-                <li>將LINE User ID綁定至CRM系統</li>
-                <li>排程程序定時執行配對邏輯</li>
-                <li>從CRM取得男女配對資料，執行配對流程代碼</li>
-                <li>透過LINE@前端推送配對結果給男性用戶</li>
-                <li>用戶選擇配對目標後，透過API觸發CRM寫入配對意圖</li>
-            </ol>
-        </div>
-
-        <h3>📋 詳細工作項目</h3>
-
-        <div class="task-item">
-            <strong>🖥️ 伺服器環境建置</strong>
-            <p>包含套件安裝、資料庫安裝、自動重啟專案程序、專案log相關設定</p>
-            <div class="time-estimate">⏱️ 工時：2天</div>
-        </div>
-
-        <div class="task-item">
-            <strong>🌐 網路連通性測試</strong>
-            <p>本地端機器(辦公室)的固定IP對外連通試錯</p>
-            <div class="time-estimate">⏱️ 工時：N天 (估計1天)</div>
-        </div>
-
-        <div class="task-item">
-            <strong>📱 LINE@ LIFF 開發</strong>
-            <ul>
-                <li>男方email驗證綁定相關流程頁面和功能</li>
-                <li>男方查看配對清單頁面和選擇功能</li>
-            </ul>
-            <div class="time-estimate">⏱️ 工時：2-4天 (依照頁面美觀要求修改程度調整)</div>
-        </div>
-
-        <div class="task-item">
-            <strong>🔗 LINE@系統整合設定</strong>
-            <p>LINE@官方帳號與此專案的相關導入設定</p>
-            <div class="time-estimate">⏱️ 工時：1天</div>
-        </div>
-
-        <div class="task-item">
-            <strong>⚙️ 排程配對系統開發</strong>
-            <ul>
-                <li>撈取CRM男女資料進行配對</li>
-                <li>透過CRM上男生綁定的LINE User ID推送結果</li>
-                <li>必要的過程資料留存(配對結果、推送紀錄)</li>
-                <li>推送內容帶參數設計，讓男方選擇後能取得男女方ID</li>
-            </ul>
-            <div class="time-estimate">⏱️ 工時：3天 (不包含複雜flex message設計)</div>
-        </div>
-
-        <div class="task-item">
-            <strong>🔌 配對意圖觸發API開發</strong>
-            <p>開發URL或API呼叫CRM來觸發寫入配對意圖功能</p>
-            <div class="time-estimate">⏱️ 工時：N天 (未確定是否純CRM端處理)</div>
-        </div>
-
-        <h2>⚠️ 重要註記</h2>
-        <div class="note">
-            <ul>
-                <li><strong>驗證機制：</strong>未討論男方選擇配對時的驗證問題</li>
-                <li><strong>建議架構：</strong>強烈建議使用單獨隔離的伺服器來架設專案(不管是辦公室內的機器還是雲端GCP)，方便後續維護和責任歸屬</li>
-            </ul>
-        </div>
-
-        <div style="margin-top: 40px; text-align: center; color: #7f8c8d; font-size: 0.9em;">
-            <p>📅 配對系統專案規格書</p>
+        <!-- 總結 -->
+        <div class="section">
+            <div class="section-title">📊 專案總結</div>
+            <div class="subsection">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="timeline">
+                        <h4>CRM端總工時</h4>
+                        <div style="text-align: center; font-size: 2em; color: #007bff; font-weight: bold;">5天</div>
+                    </div>
+                    <div class="timeline">
+                        <h4>Server端總工時</h4>
+                        <div style="text-align: center; font-size: 2em; color: #28a745; font-weight: bold;">9天</div>
+                    </div>
+                </div>
+                <div class="timeline" style="background: #d4edda; border-color: #c3e6cb;">
+                    <h4 style="color: #155724;">專案總工時</h4>
+                    <div style="text-align: center; font-size: 2.5em; color: #155724; font-weight: bold;">14天</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

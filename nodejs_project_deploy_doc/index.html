@@ -1,0 +1,345 @@
+<html lang="zh-TW"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js API專案部署指南 - Windows環境</title>
+  <style>
+      body {
+          font-family: 'Microsoft JhengHei', Arial, sans-serif;
+          line-height: 1.6;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f5f5f5;
+      }
+      .container {
+          background: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      h1 {
+          color: #2c3e50;
+          border-bottom: 3px solid #3498db;
+          padding-bottom: 10px;
+      }
+      h2 {
+          color: #34495e;
+          margin-top: 30px;
+          padding: 10px;
+          background: #ecf0f1;
+          border-left: 4px solid #3498db;
+      }
+      h3 {
+          color: #2980b9;
+          margin-top: 25px;
+      }
+      .step {
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-radius: 5px;
+          padding: 15px;
+          margin: 10px 0;
+      }
+      .command {
+          background: #2c3e50;
+          color: #ecf0f1;
+          padding: 10px;
+          border-radius: 4px;
+          font-family: 'Courier New', monospace;
+          margin: 5px 0;
+          overflow-x: auto;
+      }
+      .warning {
+          background: #fff3cd;
+          border: 1px solid #ffeaa7;
+          color: #856404;
+          padding: 15px;
+          border-radius: 5px;
+          margin: 10px 0;
+      }
+      .risk {
+          background: #f8d7da;
+          border: 1px solid #f5c6cb;
+          color: #721c24;
+          padding: 15px;
+          border-radius: 5px;
+          margin: 10px 0;
+      }
+      .info {
+          background: #d1ecf1;
+          border: 1px solid #bee5eb;
+          color: #0c5460;
+          padding: 15px;
+          border-radius: 5px;
+          margin: 10px 0;
+      }
+      .communication-cost {
+          background: #e2e3e5;
+          border: 1px solid #d6d8db;
+          color: #383d41;
+          padding: 10px;
+          border-radius: 5px;
+          margin: 5px 0;
+          font-size: 0.9em;
+      }
+      ul {
+          margin: 10px 0;
+          padding-left: 20px;
+      }
+      .highlight {
+          background: #fff3cd;
+          padding: 2px 5px;
+          border-radius: 3px;
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <h1>Node.js API專案部署指南 - Windows環境</h1>
+
+      <div class="info">
+          <strong>環境要求：</strong> Windows電腦 + PowerShell<br>
+          <strong>專案類型：</strong> Express.js API專案，連接Oracle或SQL Server資料庫
+      </div>
+
+      <h2>第一階段：安裝Node.js環境</h2>
+
+      <div class="step">
+          <h3>1. 下載並安裝NVM-Windows</h3>
+          <p>前往 <a href="https://github.com/coreybutler/nvm-windows" target="_blank">NVM-Windows GitHub頁面</a> 下載最新版本</p>
+          <div class="command">
+              # 下載nvm-setup.zip並解壓安裝
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶可能遇到的問題：</strong>
+              <ul>
+                  <li>防毒軟體可能阻擋下載或安裝</li>
+                  <li>需要管理員權限安裝</li>
+                  <li>可能需要重新啟動PowerShell或電腦</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：需要指導防毒軟體設定和管理員權限操作</div>
+      </div>
+
+      <div class="step">
+          <h3>2. 安裝Node.js 18.20.4版本</h3>
+          <div class="command">
+              nvm install 18.20.4<br>
+              nvm use 18.20.4<br>
+              node --version
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶可能遇到的問題：</strong>
+              <ul>
+                  <li>網路連線問題導致下載失敗</li>
+                  <li>路徑或環境變數設定問題</li>
+                  <li>PowerShell執行政策限制</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：可能需要協助網路設定和PowerShell政策調整</div>
+      </div>
+
+      <h2>第二階段：基本安裝專案和測試功能</h2>
+
+      <div class="step">
+          <h3>3. 複製專案到本機</h3>
+          <p>將專案檔案複製到目標位置，例如：C:\projects\your-api-project</p>
+
+          <div class="risk">
+              <strong>🔴 高風險點：</strong> 客戶需要確保專案檔案完整性，包含所有設定檔
+          </div>
+          <div class="communication-cost">💬 溝通成本：需要詳細說明檔案結構和重要設定檔清單</div>
+      </div>
+
+      <div class="step">
+          <h3>4. 進入專案目錄並安裝套件</h3>
+          <div class="command">
+              cd C:\projects\your-api-project<br>
+              npm install
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶可能遇到的問題：</strong>
+              <ul>
+                  <li>網路防火牆阻擋npm下載</li>
+                  <li>某些套件需要編譯工具（如Python、Visual Studio Build Tools）</li>
+                  <li>版本相容性問題</li>
+                  <li>企業網路代理伺服器設定</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：可能需要多次來回確認網路設定和編譯環境問題</div>
+      </div>
+
+      <div class="step">
+          <h3>5. 測試資料庫連線</h3>
+          <div class="command">
+              node bin/db_test.js
+          </div>
+
+          <div class="risk">
+              <strong>🔴 高風險點 - 資料庫連線設定：</strong>
+              <ul>
+                  <li>資料庫連線字串設定錯誤</li>
+                  <li>防火牆阻擋資料庫連線</li>
+                  <li>資料庫帳號密碼問題</li>
+                  <li>資料庫驅動程式版本問題</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：資料庫設定複雜，需要多次來回確認設定參數</div>
+      </div>
+
+      <div class="step">
+          <h3>6. 測試Zoho連線</h3>
+          <div class="command">
+              node bin/zoho_request_test.js
+          </div>
+
+          <div class="risk">
+              <strong>🔴 高風險點 - API設定：</strong>
+              <ul>
+                  <li>Zoho API金鑰或認證設定錯誤</li>
+                  <li>網路連線或代理伺服器問題</li>
+                  <li>API權限或配額限制</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：API設定較複雜，需要逐步指導認證流程</div>
+      </div>
+
+      <h2>第三階段：部署專案</h2>
+
+      <div class="step">
+          <h3>7. 安裝PM2程序管理器</h3>
+          <div class="command">
+              npm install pm2 -g
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶可能遇到的問題：</strong>
+              <ul>
+                  <li>需要管理員權限安裝全域套件</li>
+                  <li>企業電腦可能限制全域安裝</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：可能需要協助解決權限限制問題</div>
+      </div>
+
+      <div class="step">
+          <h3>8. 啟動API服務</h3>
+          <div class="command">
+              pm2 start bin/www --name api-server<br>
+              pm2 logs
+          </div>
+
+          <div class="risk">
+              <strong>🔴 高風險點 - 服務啟動：</strong>
+              <ul>
+                  <li>連接埠衝突（Port已被使用）</li>
+                  <li>設定檔路徑或內容錯誤</li>
+                  <li>權限不足無法綁定連接埠</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：可能需要多次調整設定和排除啟動問題</div>
+      </div>
+
+      <div class="step">
+          <h3>9. 儲存PM2設定</h3>
+          <div class="command">
+              pm2 save
+          </div>
+      </div>
+
+      <div class="step">
+          <h3>10. 設定開機自動啟動</h3>
+          <div class="command">
+              npm install -g pm2-windows-startup<br>
+              pm2-startup install
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶可能遇到的問題：</strong>
+              <ul>
+                  <li>需要管理員權限安裝Windows服務</li>
+                  <li>企業Group Policy可能阻擋服務安裝</li>
+                  <li>Windows服務設定錯誤</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：Windows服務設定可能需要IT部門協助</div>
+      </div>
+
+      <h2>第四階段：後續開發和除錯</h2>
+
+      <div class="step">
+          <h3>11. 版本控制設定（可選）</h3>
+          <div class="command">
+              # 安裝Git<br>
+              # 設定SSH金鑰<br>
+              git clone [repository-url]
+          </div>
+
+          <div class="info">
+              <strong>替代方案：</strong> 如果客戶無法設定Git，可提供手動更新包的方式
+          </div>
+          <div class="communication-cost">💬 溝通成本：Git設定較複雜，建議提供替代的手動更新方案</div>
+      </div>
+
+      <div class="step">
+          <h3>12. 專案更新和重啟</h3>
+          <div class="command">
+              pm2 restart all<br>
+              pm2 logs
+          </div>
+
+          <div class="warning">
+              <strong>⚠️ 客戶遇到問題時的回報流程：</strong>
+              <ul>
+                  <li>使用 <code>pm2 logs</code> 命令截取最新的錯誤訊息</li>
+                  <li>記錄問題發生的具體操作步驟</li>
+                  <li>提供完整的錯誤訊息截圖或文字檔</li>
+                  <li>等待技術支援團隊遠端診斷和修正</li>
+              </ul>
+          </div>
+          <div class="communication-cost">💬 溝通成本：需要指導客戶如何正確收集和回報問題資訊</div>
+      </div>
+
+      <h2>📊 總體風險評估和建議</h2>
+
+      <div class="risk">
+          <h3>🔴 高風險環節（容易造成延誤）：</h3>
+          <ul>
+              <li><span class="highlight">資料庫連線設定</span> - 設定複雜且錯誤難以排除</li>
+              <li><span class="highlight">企業網路環境限制</span> - 可能需要IT部門協助</li>
+              <li><span class="highlight">權限和安全軟體問題</span> - 需要管理員權限</li>
+              <li><span class="highlight">套件安裝失敗</span> - 網路或編譯環境問題</li>
+          </ul>
+      </div>
+
+      <div class="warning">
+          <h3>⚠️ 建議準備的支援資料：</h3>
+          <ul>
+              <li>詳細的設定檔範例和說明</li>
+              <li>常見錯誤訊息和解決方案文件</li>
+              <li>視訊會議支援時段安排</li>
+              <li>緊急聯絡方式</li>
+          </ul>
+      </div>
+
+      <div class="info">
+          <h3>💡 降低溝通成本的建議：</h3>
+          <ul>
+              <li>提供預設的設定檔範本</li>
+              <li>建立詳細的FAQ文件</li>
+              <li>錄製操作示範影片</li>
+              <li>安排分階段部署和測試</li>
+              <li>提供遠端協助工具（如TeamViewer）作為備案</li>
+              <li>準備快速響應的技術支援團隊</li>
+          </ul>
+      </div>
+
+      <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 5px;">
+          <p><strong>注意：</strong> 此文件請在部署前與客戶確認，並準備相應的支援資料和聯絡方式。建議安排專門的技術支援人員在部署期間待命。</p>
+      </div>
+  </div>
+
+</body></html>
